@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Tax Calculator Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
+This is a **React.js** frontend for a Tax Calculation Portal that allows users to input their income details and calculates their estimated tax liability as per **Indian Income Tax laws (FY 2024-25)**. The project follows best practices, including modular structure and a dark-themed UI using **Tailwind CSS**.
 
-## Available Scripts
+## Features
+- User-friendly interface with a **dark theme**.
+- Form to input **Annual Income, Investments, Other Deductions, and Other Income Sources**.
+- "Calculate Tax" button to submit the form.
+- Results page displaying:
+  - **Taxable Income** after deductions
+  - **Tax Payable** as per tax slabs
+  - **Tax Savings Suggestions** (optional feature)
+- **React Router** for navigation.
 
-In the project directory, you can run:
+## Tech Stack
+- **Frontend:** React.js, Tailwind CSS
+- **State Management:** React Hooks
+- **Routing:** React Router
+- **API Requests:** Axios
+- **Backend:** Node.js + Express.js (Separate Repository)
 
-### `npm start`
+## Folder Structure
+```
+📂 tax-calculator-frontend
+ ┣ 📂 src
+ ┃ ┣ 📂 pages
+ ┃ ┃ ┣ 📜 Home.js (Main form page)
+ ┃ ┃ ┣ 📜 Results.js (Results page)
+ ┃ ┣ 📂 components
+ ┃ ┃ ┣ 📜 TaxForm.js (Form component)
+ ┃ ┃ ┣ 📜 TaxResults.js (Results display component)
+ ┃ ┣ 📂 routes
+ ┃ ┃ ┣ 📜 AppRoutes.js (Handles all routes)
+ ┃ ┣ 📜 App.js (Main app entry with Router)
+ ┃ ┣ 📜 index.js (React entry point)
+ ┣ 📜 package.json
+ ┣ 📜 README.md
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation & Setup
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-repo/tax-calculator-frontend.git
+   cd tax-calculator-frontend
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Run the development server:
+   ```sh
+   npm run dev
+   ```
+4. Ensure the backend is running at `http://localhost:5000`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## API Integration
+This frontend communicates with a **Node.js backend**. The API for tax calculation is expected at:
+```sh
+POST http://localhost:5000/calculate-tax
+```
+with the following request body:
+```json
+{
+  "annualIncome": 500000,
+  "investments": 100000,
+  "deductions": 50000,
+  "otherIncome": 20000
+}
+```
+The response will contain:
+```json
+{
+  "taxableIncome": 350000,
+  "taxPayable": 5000,
+  "suggestions": "Invest more in 80C for tax savings."
+}
+```
